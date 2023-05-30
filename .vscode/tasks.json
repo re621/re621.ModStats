@@ -1,0 +1,43 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "approvers",
+            "type": "npm",
+            "script": "approvers",
+            "group": {
+                "kind": "none",
+                "isDefault": true
+            },
+            "presentation": {
+                "clear": true,
+                "reveal": "silent",
+                "panel": "shared"
+            },
+            "options": {
+                "statusbar": {
+                    "hide": false
+                }
+            }
+        },
+        {
+            "label": "moderators",
+            "type": "npm",
+            "script": "moderators",
+            "group": {
+                "kind": "none",
+                "isDefault": true
+            },
+            "presentation": {
+                "clear": true,
+                "reveal": "silent",
+                "panel": "shared"
+            },
+            "options": {
+                "statusbar": {
+                    "hide": false
+                }
+            }
+        }
+    ]
+}

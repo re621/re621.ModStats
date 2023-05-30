@@ -1,0 +1,16 @@
+{
+  "name": "e621.stats",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "approvers": "node ./bin/approvers.js",
+    "moderators": "node ./bin/moderators.js"
+  },
+  "author": "Cinder",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.1.0",
+    "node-fetch": "^2.6.9"
+  }
+}
