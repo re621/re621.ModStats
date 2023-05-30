@@ -1,7 +1,6 @@
 
 //// CONFIG START
 
-const when = "May 2023";                // Month to look up
 const expectation = 100;                // Expected number of DAILY actions
 const exemptUsers = [                   // Users to skip
     "Dari",
@@ -30,9 +29,8 @@ const Common = require("./_common");
 (async function() {
 
     Common.setup();
-    const whenDate = new Date(when);
-    const whenInterval = Common.formatInterval(whenDate);
-    const expectedScore = Common.countDays(whenDate) * expectation;
+    const whenInterval = Common.formatInterval(Common.lookupWhen);
+    const expectedScore = Common.countDays(Common.lookupWhen) * expectation;
     Common.logName = outputName;
     
 

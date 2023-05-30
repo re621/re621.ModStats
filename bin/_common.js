@@ -11,11 +11,24 @@ class Common {
         if(!fs.existsSync("./data/")) fs.mkdirSync("./data/");
     }
 
-    // ===== Misc =====
-
+    /** True if data is being rebuilt from JSON, false otherwise */
     static get useCache() {
         return process.env.CACHE === "true";
     }
+
+    static _lookupWhen;
+    /** Origin date for the lookup interval */
+    static get lookupWhen() {
+        if(!this._lookupWhen) {
+            const when = process.env.LOOKUP;
+            this._lookupWhen = when ? new Date(when) : new Date();
+        }
+        return this._lookupWhen;
+    }
+
+
+    
+    // ===== Misc =====
 
     /**
      * Returns a promise that resolves after a specified period of time
