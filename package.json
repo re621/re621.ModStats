@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "approvers": "node ./bin/approvers.js",
+    "janitors": "node ./bin/janitors.js",
     "moderators": "node ./bin/moderators.js"
   },
   "author": "Cinder",

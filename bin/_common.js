@@ -26,6 +26,9 @@ class Common {
         return this._lookupWhen;
     }
 
+    static get expectedPostPages() {
+        return parseInt(process.env.POST_PG || "1");
+    }
 
     
     // ===== Misc =====
@@ -69,6 +72,7 @@ class Common {
      * @returns Number of days in the month
      */
     static countDays(whenDate) {
+        if(!whenDate) whenDate = this.lookupWhen;
         return new Date(whenDate.getFullYear(), whenDate.getMonth() + 1, 0).getDate();
     }
 
