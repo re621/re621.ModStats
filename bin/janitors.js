@@ -327,35 +327,59 @@ function printToFile(approverStats, secondHighest, expectedScore) {
 
     const printData = [];
     printData.push([
-        "Username",
+
+        // Publicly Visible
+        Common.lookupWhen.toLocaleDateString("en-us", {month: "long", year: "numeric"}),
         "Approved",
         "Replaced",
         "Deleted",
         "Grade",
-        "", // "Tendency",
-        "",
+        "Trend",
+        " ",
+
+        // Histogram
+        `"=TEXT(DATE(YEAR(A1), MONTH(A1) - 2, 0), ""mmmm"")"`,
+        `"=TEXT(DATE(YEAR(A1), MONTH(A1) - 1, 0), ""mmmm"")"`,
+        `"=TEXT(DATE(YEAR(A1), MONTH(A1), 0), ""mmmm"")"`,
+        `"=TEXT(DATE(YEAR(A1), MONTH(A1), 1), ""mmmm"")"`,
+        "Trend",
+        " ",
+
+        // Background info
         "ID",
         "Level",
         "Score",
-        "Expectation",
-        "Irrelevant",
+        "Inactive",
     ]);
 
+    let iterator = 2;
     for(const user of Object.values(approverStats)) {
         printData.push([
+
+            // Publicly Visible
             user.name,
             user.approvals,
             user.replacements,
             user.flags,
-            "", // Grade calculations done in the spreadsheet
-            "", // Same for the tendency
+            `"=IF(Q${iterator},""X"", VLOOKUP($K$2:$K$52,Utility!$B$4:$C$24,2,TRUE))"`, // Grade calculations done in the spreadsheet
+            `"=IF(Q${iterator}, """", VLOOKUP($L$2:$L$52,Utility!$E$4:$F$24,2,TRUE))"`, // Same for the tendency
             "",
+
+            // Histogram
+            `"=IFERROR(XLOOKUP(A${iterator}, INDIRECT(H$1&""!A2:A""), INDIRECT(H$1&""!K2:K"")), 0)"`,
+            `"=IFERROR(XLOOKUP(A${iterator}, INDIRECT(I$1&""!A2:A""), INDIRECT(I$1&""!K2:K"")), 0)"`,
+            `"=IFERROR(XLOOKUP(A${iterator}, INDIRECT(J$1&""!A2:A""), INDIRECT(J$1&""!K2:K"")), 0)"`,
+            Math.round((user.score / expectedScore) * 100),
+            `"=K${iterator} - ROUND(AVERAGE(H${iterator}:J${iterator}))"`,
+            "",
+
+            // Background info
             user.id,
             user.level,
             user.score,
-            Math.round((user.score / expectedScore) * 100),
             zeroExpectations.includes(user.name) ? "TRUE" : "",
         ].join(","));
+        iterator++;
     }
 
     fs.writeFileSync(`./data/${outputName}.csv`, printData.join("\n"));
