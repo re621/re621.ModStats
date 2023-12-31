@@ -21,25 +21,6 @@
             }
         },
         {
-            "label": "janitors",
-            "type": "npm",
-            "script": "janitors",
-            "group": {
-                "kind": "none",
-                "isDefault": true
-            },
-            "presentation": {
-                "clear": true,
-                "reveal": "silent",
-                "panel": "shared"
-            },
-            "options": {
-                "statusbar": {
-                    "hide": false
-                }
-            }
-        },
-        {
             "label": "moderators",
             "type": "npm",
             "script": "moderators",
