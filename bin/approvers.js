@@ -3,7 +3,7 @@
 
 const exemptUsers = [                   // Users to skip
     "Dari",
-    "DasaDevil",
+    "Hal_Greaves",
     "Varka",
 ]
 const zeroExpectations = [              // Users who are not expected to handle approvals

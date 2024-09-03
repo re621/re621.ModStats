@@ -10,8 +10,9 @@ const zeroExpectations = [              // Users who are not expected to handle 
     "Xch3l",
     "Earlopain",
     "NotMeNotYou",
-    "DasaDevil",
-    "Knotty_Curls",
+    "Hal_Greaves",
+    "crowshow",
+    "knotty_curls",
 ]
 const scoreModifiers = {                // Score calculation parameters
     tickets: 1,
